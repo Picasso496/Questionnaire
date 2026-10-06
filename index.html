@@ -1,5 +1,5 @@
-<!DOCTYPE html>;
-<html lang="ru">;
+<!DOCTYPE html>
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +14,10 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    color: #803d3d;
+    color: #333;
   }
   .container {
-    background: #e23b3ba4;
+    background: #fff;
     border-radius: 16px;
     padding: 32px 24px;
     max-width: 480px;
@@ -25,7 +25,7 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   }
   h1 { font-size: 24px; margin-bottom: 12px; text-align: center; }
-  p.subtitle { text-align: center; color: #e0e0e0; margin-bottom: 24px; font-size: 14px; }
+  p.subtitle { text-align: center; color: #666; margin-bottom: 24px; font-size: 14px; }
   .btn {
     display: block;
     width: 100%;
@@ -74,23 +74,22 @@
 <body>
 
 <div class="container">
-    <!--ГЛАВНАЯ-->
-    <div id="page-home">
-        <h1>Добро пожаловать 👋</h1>
-        <p class="subtitle">Пожалуйста заполните небольшую анкету. Это займет меньше минуты.</p>
-        <button class="btn" oneclick="showForm()">Начать анкетирование</button>
-    </div>
-    
-    <!--Форма-->
-    <div id="page-form" class="hidden">
-        <h1>Анкета</h1>
-        <p class="subtitle">Все поля обязательны</p>
-        <form id="surveyForm">
-            <div class="field">
-                <label>Имя</label>
-                <input type="text" name="name" required>
-            </div>
-            <div class="field">
+
+  <div id="page-home">
+    <h1>Добро пожаловать 👋</h1>
+    <p class="subtitle">Пожалуйста, заполните небольшую анкету. Это займёт меньше минуты.</p>
+    <button class="btn" onclick="showForm()">Начать анкетирование</button>
+  </div>
+
+  <div id="page-form" class="hidden">
+    <h1>Анкета</h1>
+    <p class="subtitle">Все поля обязательны</p>
+    <form id="surveyForm">
+      <div class="field">
+        <label>Имя</label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="field">
         <label>Фамилия</label>
         <input type="text" name="surname" required>
       </div>
@@ -111,21 +110,20 @@
         <input type="text" name="city" required>
       </div>
       <div class="field">
-        <label>Комментарий</label>
+        <label>Комментарий (необязательно)</label>
         <textarea name="comment" rows="3"></textarea>
       </div>
       <button type="submit" class="btn" id="submitBtn">Отправить</button>
-        </form>
-        <a class="back-link" onclick="showHome()">← Назад</a>
-    </div>
+    </form>
+    <a class="back-link" onclick="showHome()">← Назад</a>
+  </div>
 
-    <!-- УСПЕХ -->
   <div id="page-success" class="hidden success">
     <div class="icon">✅</div>
     <h1>Спасибо!</h1>
     <p class="subtitle">Ваша анкета успешно отправлена.</p>
   </div>
-  
+
 </div>
 
 <script>
@@ -148,8 +146,7 @@
     pageSuccess.classList.remove('hidden');
   }
 
-  // ССЫЛКА
-  const ENDPOINT = 'https://formspree.io/f/xqpeaaaj';
+  const ENDPOINT = 'https://formspree.io/f/ВАШ_ID';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -172,7 +169,6 @@
     }
   });
 
-  // Автопереход index.html#form
   if (location.hash === '#form') showForm();
 </script>
 

@@ -1,0 +1,181 @@
+<!DOCTYPE html>;
+<html lang="ru">;
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкетирование</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #803d3d;
+  }
+  .container {
+    background: #e23b3ba4;
+    border-radius: 16px;
+    padding: 32px 24px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  h1 { font-size: 24px; margin-bottom: 12px; text-align: center; }
+  p.subtitle { text-align: center; color: #e0e0e0; margin-bottom: 24px; font-size: 14px; }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #667eea;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+    text-decoration: none;
+  }
+  .btn:hover { background: #5568d3; }
+  .btn:disabled { background: #aaa; cursor: not-allowed; }
+  .field { margin-bottom: 16px; }
+  label { display: block; font-size: 14px; margin-bottom: 6px; font-weight: 500; }
+  input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+  .hidden { display: none; }
+  .success { text-align: center; }
+  .success .icon { font-size: 56px; margin-bottom: 12px; }
+  .back-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!--ГЛАВНАЯ-->
+    <div id="page-home">
+        <h1>Добро пожаловать 👋</h1>
+        <p class="subtitle">Пожалуйста заполните небольшую анкету. Это займет меньше минуты.</p>
+        <button class="btn" oneclick="showForm()">Начать анкетирование</button>
+    </div>
+    
+    <!--Форма-->
+    <div id="page-form" class="hidden">
+        <h1>Анкета</h1>
+        <p class="subtitle">Все поля обязательны</p>
+        <form id="surveyForm">
+            <div class="field">
+                <label>Имя</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="field">
+        <label>Фамилия</label>
+        <input type="text" name="surname" required>
+      </div>
+      <div class="field">
+        <label>Возраст</label>
+        <input type="number" name="age" min="1" max="120" required>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field">
+        <label>Телефон</label>
+        <input type="tel" name="phone" required>
+      </div>
+      <div class="field">
+        <label>Город</label>
+        <input type="text" name="city" required>
+      </div>
+      <div class="field">
+        <label>Комментарий</label>
+        <textarea name="comment" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn" id="submitBtn">Отправить</button>
+        </form>
+        <a class="back-link" onclick="showHome()">← Назад</a>
+    </div>
+
+    <!-- УСПЕХ -->
+  <div id="page-success" class="hidden success">
+    <div class="icon">✅</div>
+    <h1>Спасибо!</h1>
+    <p class="subtitle">Ваша анкета успешно отправлена.</p>
+  </div>
+  
+</div>
+
+<script>
+  const pageHome = document.getElementById('page-home');
+  const pageForm = document.getElementById('page-form');
+  const pageSuccess = document.getElementById('page-success');
+  const form = document.getElementById('surveyForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function showForm() {
+    pageHome.classList.add('hidden');
+    pageForm.classList.rem
+    ove('hidden');
+  }
+  function showHome() {
+    pageForm.classList.add('hidden');
+    pageHome.classList.remove('hidden');
+  }
+  function showSuccess() {
+    pageForm.classList.add('hidden');
+    pageSuccess.classList.remove('hidden');
+  }
+
+  // ССЫЛКА
+  const ENDPOINT = 'https://formspree.io/f/xqpeaaaj';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      showSuccess();
+    } catch (err) {
+      alert('Ошибка отправки. Попробуйте ещё раз.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Отправить';
+    }
+  });
+
+  // Автопереход index.html#form
+  if (location.hash === '#form') showForm();
+</script>
+
+</body>
+</html>

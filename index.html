@@ -135,7 +135,14 @@
       </div>
       <div class="field">
         <label>Насколько ты готова к работе с Настей?</label>
-        <input type="text" name="text" required>
+         <select name="readiness" required>
+           <option value="" disabled selected>Выберите вариант...</option>
+           <option value="fully">Полностью готова 🔥</option>
+           <option value="mostly">Скорее готова</option>
+           <option value="neutral">Нейтрально</option>
+           <option value="not_really">Скорее не готова</option>
+           <option value="not_at_all">Совсем не готова</option>
+        </select>
       </div>
       <div class="field">
         <label>Где с тобой связаться?</label>

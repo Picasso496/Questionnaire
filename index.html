@@ -86,27 +86,27 @@
     <p class="subtitle">Все поля обязательны</p>
     <form id="surveyForm">
       <div class="field">
-        <label>Имя</label>
+        <label>Имя <span class="req">*</span></label>
         <input type="text" name="name" required>
       </div>
       <div class="field">
-        <label>Фамилия</label>
+        <label>Фамилия <span class="req">*</span></label>
         <input type="text" name="surname" required>
       </div>
       <div class="field">
-        <label>Возраст</label>
+        <label>Возраст <span class="req">*</span></label>
         <input type="number" name="age" min="1" max="120" required>
       </div>
       <div class="field">
-        <label>Email</label>
+        <label>Email <span class="req">*</span></label>
         <input type="email" name="email" placeholder="example@mail.ru" required>
       </div>
       <div class="field">
-        <label>Телефон</label>
+        <label>Телефон <span class="req">*</span></label>
         <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
       </div>
       <div class="field">
-        <label>Город</label>
+        <label>Город <span class="req">*</span></label>
         <input type="text" name="city" required>
       </div>
       <div class="field">
@@ -122,11 +122,11 @@
         <input type="text" name="text" required>
       </div>
       <div class="field">
-        <label>Какой оборот сейчас?</label>
+        <label>Какой оборот сейчас? <span class="req">*</span></label>
         <input type="text" name="text" required>
       </div>
       <div class="field">
-        <label>К какому обороту стремишься?</label>
+        <label>К какому обороту стремишься? <span class="req">*</span></label>
         <input type="text" name="text" required>
       </div>
       <div class="field">
@@ -134,7 +134,7 @@
         <input type="text" name="text" required>
       </div>
       <div class="field">
-        <label>Насколько ты готова к работе с Настей?</label>
+        <label>Насколько ты готова к работе с Настей? <span class="req">*</span></label>
          <select name="readiness" required>
            <option value="" disabled selected>Выберите вариант...</option>
            <option value="fully">Полностью готова 🔥</option>
@@ -145,8 +145,8 @@
         </select>
       </div>
       <div class="field">
-        <label>Где с тобой связаться?</label>
-        <input type="text" name="contact_info" required placeholder="Например, Telegram, MAX, почта, телефон" required>
+        <label>Где с тобой связаться? <span class="req">*</span></label>
+        <input type="text" name="contact_info" required placeholder="Например, Telegram, MAX, почта" required>
       </div>
       <div class="field">
         <label>Комментарий (необязательно)</label>
